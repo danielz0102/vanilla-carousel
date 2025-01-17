@@ -36,3 +36,28 @@
     left: 25px;
   }
 }
+
+.carousel__nav {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.carousel__nav__btn {
+  width: 12.5px;
+  height: 12.5px;
+  border-radius: 50%;
+  border: none;
+  opacity: 0.5;
+
+  cursor: pointer;
+  transition: opacity, 0.25s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
