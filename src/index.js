@@ -1,13 +1,13 @@
 import '@/index.css'
 import '@/carousel.css'
 
-const ACTIVE_CLASS = 'carousel__nav__btn--active'
+const ACTIVE_CLASS = 'carousel__nav__dot--active'
 
 document.querySelectorAll('.carousel__slide').forEach((slide, i) => {
   slide.id = `slide${i + 1}`
 
   const slideBtn = document.createElement('button')
-  slideBtn.classList.add('carousel__nav__btn')
+  slideBtn.classList.add('carousel__nav__dot')
 
   if (i === 0) slideBtn.classList.add(ACTIVE_CLASS)
 
@@ -17,13 +17,13 @@ document.querySelectorAll('.carousel__slide').forEach((slide, i) => {
 })
 
 document
-  .querySelector('.carousel__btn--left')
+  .querySelector('.carousel__arrow--left')
   .addEventListener('click', () => previous())
 document
-  .querySelector('.carousel__btn--right')
+  .querySelector('.carousel__arrow--right')
   .addEventListener('click', () => next())
 
-document.querySelectorAll('.carousel__nav__btn').forEach((btn) => {
+document.querySelectorAll('.carousel__nav__dot').forEach((btn) => {
   btn.addEventListener('click', () => slideTo(btn.dataset.slide))
 })
 
