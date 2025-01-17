@@ -22,6 +22,8 @@ document.querySelectorAll('.carousel__nav__dot').forEach((btn) => {
   btn.addEventListener('click', () => slideTo(btn.dataset.slide))
 })
 
+setInterval(next, 5000)
+
 function next() {
   const currentSlide = document.querySelector('.carousel__slide:not([hidden])')
   const newSlide = currentSlide?.nextElementSibling
