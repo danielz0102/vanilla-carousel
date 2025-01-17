@@ -1,6 +1,13 @@
 import '@/index.css'
 import '@/carousel.css'
 
+document
+  .querySelector('.carousel__btn--left')
+  .addEventListener('click', () => previous())
+document
+  .querySelector('.carousel__btn--right')
+  .addEventListener('click', () => next())
+
 function next() {
   const currentSlide = document.querySelector('.carousel__slide:not([hidden])')
   const nextElement = currentSlide?.nextElementSibling
@@ -22,10 +29,3 @@ function previous() {
     previousElement.hidden = false
   }
 }
-
-document
-  .querySelector('.carousel__btn--left')
-  .addEventListener('click', () => previous())
-document
-  .querySelector('.carousel__btn--right')
-  .addEventListener('click', () => next())
