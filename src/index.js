@@ -6,14 +6,9 @@ const ACTIVE_CLASS = 'carousel__nav__dot--active'
 document.querySelectorAll('.carousel__slide').forEach((slide, i) => {
   slide.id = `slide${i + 1}`
 
-  const slideBtn = document.createElement('button')
-  slideBtn.classList.add('carousel__nav__dot')
+  const dot = createDot(slide.id, i === 0)
 
-  if (i === 0) slideBtn.classList.add(ACTIVE_CLASS)
-
-  slideBtn.dataset.slide = slide.id
-
-  document.querySelector('.carousel__nav').appendChild(slideBtn)
+  document.querySelector('.carousel__nav').appendChild(dot)
 })
 
 document
@@ -69,4 +64,15 @@ function setActiveDot(slideId) {
 
   currentDot.classList.remove(ACTIVE_CLASS)
   newDot.classList.add(ACTIVE_CLASS)
+}
+
+function createDot(slideId, active = false) {
+  const dot = document.createElement('button')
+  dot.classList.add('carousel__nav__dot')
+
+  if (active) dot.classList.add(ACTIVE_CLASS)
+
+  dot.dataset.slide = slideId
+
+  return dot
 }
