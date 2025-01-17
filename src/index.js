@@ -30,6 +30,8 @@ function next() {
   if (nextElement && isSlide) {
     currentSlide.hidden = true
     nextElement.hidden = false
+  } else {
+    slideTo('slide1')
   }
 }
 
@@ -41,6 +43,11 @@ function previous() {
   if (previousElement && isSlide) {
     currentSlide.hidden = true
     previousElement.hidden = false
+  } else {
+    const slides = document.querySelectorAll('.carousel__slide')
+    const lastSlide = slides[slides.length - 1]
+
+    slideTo(lastSlide.id)
   }
 }
 
