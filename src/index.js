@@ -1,11 +1,16 @@
 import '@/index.css'
 import '@/carousel.css'
 
+const ACTIVE_CLASS = 'carousel__nav__btn--active'
+
 document.querySelectorAll('.carousel__slide').forEach((slide, i) => {
   slide.id = `slide${i + 1}`
 
   const slideBtn = document.createElement('button')
   slideBtn.classList.add('carousel__nav__btn')
+
+  if (i === 0) slideBtn.classList.add(ACTIVE_CLASS)
+
   slideBtn.dataset.slide = slide.id
 
   document.querySelector('.carousel__nav').appendChild(slideBtn)
@@ -30,6 +35,7 @@ function next() {
   if (nextElement && isSlide) {
     currentSlide.hidden = true
     nextElement.hidden = false
+    setActiveDot(nextElement.id)
   } else {
     slideTo('slide1')
   }
@@ -43,10 +49,10 @@ function previous() {
   if (previousElement && isSlide) {
     currentSlide.hidden = true
     previousElement.hidden = false
+    setActiveDot(previousElement.id)
   } else {
     const slides = document.querySelectorAll('.carousel__slide')
     const lastSlide = slides[slides.length - 1]
-
     slideTo(lastSlide.id)
   }
 }
@@ -58,5 +64,14 @@ function slideTo(slideId) {
   if (newSlide !== currentSlide) {
     newSlide.hidden = false
     currentSlide.hidden = true
+    setActiveDot(newSlide.id)
   }
+}
+
+function setActiveDot(slideId) {
+  const currentDot = document.querySelector(`.${ACTIVE_CLASS}`)
+  const newDot = document.querySelector(`[data-slide="${slideId}"]`)
+
+  currentDot.classList.remove(ACTIVE_CLASS)
+  newDot.classList.add(ACTIVE_CLASS)
 }
