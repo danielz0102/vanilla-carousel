@@ -29,32 +29,27 @@ document.querySelectorAll('.carousel__nav__btn').forEach((btn) => {
 
 function next() {
   const currentSlide = document.querySelector('.carousel__slide:not([hidden])')
-  const nextElement = currentSlide?.nextElementSibling
-  const isSlide = nextElement?.classList.contains('carousel__slide')
+  const newSlide = currentSlide?.nextElementSibling
+  const isSlide = newSlide?.classList.contains('carousel__slide')
+  const nextId = newSlide && isSlide ? newSlide.id : 'slide1'
 
-  if (nextElement && isSlide) {
-    currentSlide.hidden = true
-    nextElement.hidden = false
-    setActiveDot(nextElement.id)
-  } else {
-    slideTo('slide1')
-  }
+  slideTo(nextId)
 }
 
 function previous() {
   const currentSlide = document.querySelector('.carousel__slide:not([hidden])')
-  const previousElement = currentSlide?.previousElementSibling
-  const isSlide = previousElement?.classList.contains('carousel__slide')
+  const newSlide = currentSlide?.previousElementSibling
+  const isSlide = newSlide?.classList.contains('carousel__slide')
 
-  if (previousElement && isSlide) {
-    currentSlide.hidden = true
-    previousElement.hidden = false
-    setActiveDot(previousElement.id)
-  } else {
+  if (!newSlide || !isSlide) {
     const slides = document.querySelectorAll('.carousel__slide')
     const lastSlide = slides[slides.length - 1]
+
     slideTo(lastSlide.id)
+    return
   }
+
+  slideTo(newSlide.id)
 }
 
 function slideTo(slideId) {
